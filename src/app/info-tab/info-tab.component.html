@@ -1,0 +1,44 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link"
+    aria-current="page"
+
+    [ngClass]="{'active': (tabSelected === 'list')}"
+    (click)="onChangeTab('list')"
+    >List Items</a>
+  </li>
+  <li class="nav-item">
+    <a
+    class="nav-link"
+    aria-current="page"
+    [ngClass]="{'active': (tabSelected === 'history')}"
+    (click)="onChangeTab('history')">History</a>
+  </li>
+</ul>
+<div class="line-items" *ngIf="tabSelected === 'list'">
+  <div class="top-names">
+    <p>Name</p>
+    <p>Quantity</p>
+    <p>Unit Price</p>
+    <p>Total</p>
+  </div>
+  <div class="top-names" *ngFor="let lineItem of billingData.lineItems">
+    <p>{{lineItem.name}}</p>
+    <p>{{lineItem.quantity}}</p>
+    <p>{{lineItem.unitPrice | currency}}</p>
+    <p>{{lineItem.total | currency}}</p>
+  </div>
+</div>
+<div class="history" *ngIf="tabSelected === 'history'">
+<p style="margin: 1rem; font-weight: 600;">Recent Activity</p>
+<div class="recent-activity">
+  <div class="recent-activity-date">
+    Today <p>{{billingData.recentActivity.date}}</p>
+  </div>
+  <div class="recent-activity-user">
+    <span><em class="fa fa-circle" aria-hidden="true" style="margin-right: 0.rem;"></em>
+      Flagged by {{billingData.recentActivity.user}} </span>
+    <p>Lorem ipsum dolor sit ame.</p>
+  </div>
+</div>
+</div>

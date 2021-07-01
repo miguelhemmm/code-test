@@ -1,0 +1,47 @@
+.top-names {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.8rem;
+
+  p {
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+.recent-activity {
+width: 90%;
+height: 70px;
+border: 2px solid lightgray;
+margin: 0 auto;
+display: flex;
+flex-direction: row;
+}
+
+.recent-activity-item {
+  font-size: 12px;
+  font-weight: 600;
+  width: 100%;
+  margin: 1rem;
+
+
+  p {
+    color: gray;
+  }
+
+  span {
+    color: #FF616D;
+  }
+  }
+
+  .recent-activity-user {
+    @extend .recent-activity-item;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .recent-activity-date {
+    @extend .recent-activity-item;
+    display: flex;
+    flex-direction: column;
+  }

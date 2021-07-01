@@ -1,0 +1,95 @@
+<div class="buttons-wrapper">
+    <button type="button"
+    class="btn btn-outline-secondary btn-sm small-button">
+    <span><em class="fa fa-envelope" aria-hidden="true" style="color: #39A2DB; margin-right: 0.3rem;">
+    </em></span>Direct</button>
+    <div class="right-buttons">
+      <div class="btn-group" role="group">
+        <button id="btnGroupDrop1"
+        type="button"
+        class="btn btn-light btn-sm dropdown-toggle"
+        data-bs-toggle="dropdown" aria-expanded="false"
+        style="margin-right: 1rem; border: 1px solid gray;">
+          More
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+          <li><a class="dropdown-item">Export</a></li>
+          <li><a class="dropdown-item">Mark as exported</a></li>
+          <li style="border-top: 0.5px solid lightgray;" ><a class="dropdown-item">Setup Vendor</a></li>
+          <li style="border-top: 0.5px solid lightgray;"><a class="dropdown-item">
+            Flag Invoice<span><em class="fa fa-flag" aria-hidden="true" style="margin-left: 3.8rem; color: lightgray;"></em></span></a></li>
+          <li><a class="dropdown-item">
+            Archive Invoice<span><em class="fa fa-archive" style="margin-left: 2.5rem; color: lightgray;" aria-hidden="true"></em></span></a></li>
+          <li>
+            <a class="dropdown-item" style="color: #FF616D;">
+              Delete Invoice<span><em  style="color: #FF616D; margin-left: 3rem;" class="fa fa-trash-o" aria-hidden="true"></em></span>
+            </a></li>
+        </ul>
+      </div>
+      <button type="button" class="btn btn-primary btn-sm">Approve</button>
+    </div>
+</div>
+<div class="main-item">
+<span *ngIf="toggleChevron" style="color: gray;">VENDOR</span>
+<p>Freguesia Cheese<span>
+  <em
+  aria-hidden="true"
+  (click)="toggleItem()"
+  [ngClass]="[!toggleChevron ? 'fa fa-chevron-down' : 'fa fa-chevron-up']">
+  </em></span></p>
+  <span *ngIf="toggleChevron"
+  style="color: #66DE93; position: relative; bottom: 1.5rem;">
+  <i class="fa fa-check-circle-o" style="margin-right: 0.2rem;" aria-hidden="true">
+  </i>This vendor is mapped</span>
+  <div *ngIf="!toggleChevron" class="item-info">
+    <p>{{billingData.invoiceNum}}</p>
+    <p> {{billingData.invoiceDate | date}}</p>
+    <p>{{billingData.restaurant}}</p>
+    <p><span>Total:</span>{{billingData.total | currency}}</p>
+  </div>
+  <div *ngIf="toggleChevron" class="item-info-expanded">
+    <div class="first-row">
+      <div>
+        <p>Invoice No</p>
+        {{billingData.invoiceNum}}
+      </div>
+      <div>
+        <p>Invoice Type</p>
+         {{billingData.invoiceType}}
+      </div>
+      <div>
+        <p>Restaurant</p>
+        {{billingData.restaurant}}
+      </div>
+      <div style="display: flex; flex-direction: column; margin-right: 4.5rem;">
+        <span style="color: gray;">Subtotal</span> {{billingData.subtotal | currency}}
+        <span style="color: gray;">Tax</span> {{billingData.tax | currency}}
+      </div>
+    </div>
+    <div class="second-row">
+      <div>
+        <p>Posting Date</p>
+        {{billingData.postingDate | date}}
+      </div>
+      <div style="margin-right: 1rem;">
+        <p>Invoice Date</p>
+        {{billingData.invoiceDate | date}}
+      </div>
+      <div style="margin-right: 4rem;">
+        <p>Due Date</p>
+        {{billingData.dueDate | date}}
+      </div>
+      <div style="display: flex; flex-direction: column; margin-right: 4rem;">
+        <p>Total</p>
+        {{billingData.total | currency}}
+      </div>
+    </div>
+    <span style="color: gray; font-size: 12px; font-weight: 600;">
+      <em class="fa fa-comment-o" aria-hidden="true" style="margin-right: 0.5rem; font-size: 12px;">
+      </em>Click to enter Memo
+    </span>
+  </div>
+</div>
+<app-info-tab
+[billingData]="billingData"
+></app-info-tab>
